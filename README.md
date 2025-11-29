@@ -37,7 +37,7 @@ f(n) = 10 + f(n-1) + f(n-3) + f(n-5), si n > 0
 El programa f_345.py computa esta función `f`, obviamente usando `@memoized` porque en caso contrario demoraría mucho.
 
 | n | f(n) |
-| ---- | ---- |)
+| ---- | ---- |
 |  -5 | 3 |
 |   0 | 2 |
 |   5 | 126 |

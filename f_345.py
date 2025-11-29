@@ -10,6 +10,6 @@ def f(n: int) -> int:
 
 if __name__ == "__main__":
     print("| n | f(n) |")
-    print("| ---- | ---- |)")
+    print("| ---- | ---- |")
     for n in range(-5,45,5):
         print (f"| {n:3} | {f(n):,} |")
