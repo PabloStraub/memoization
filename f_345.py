@@ -9,7 +9,7 @@ def f(n: int) -> int:
     return 10 + f(n-1) + f(n-3) + f(n-5)
 
 if __name__ == "__main__":
-    print("| n | f(n) |")
-    print("| ---- | ---- |")
-    for n in range(-5,45,5):
-        print (f"| {n:3} | {f(n):,} |")
+    print("| n | f(n) | Factor")
+    print("| ---- | ---- | ---- |")
+    for n in range(-5,90,5):
+        print (f"| {n:3} | {f(n):,} | {f(n)/f(n-5):7.3} |")

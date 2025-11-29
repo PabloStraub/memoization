@@ -36,17 +36,17 @@ f(n) = 10 + f(n-1) + f(n-3) + f(n-5), si n > 0
 
 El programa f_345.py computa esta función `f`, obviamente usando `@memoized` porque en caso contrario demoraría mucho.
 
-| n | f(n) |
-| ---- | ---- |
-|  -5 | 3 |
-|   0 | 2 |
-|   5 | 126 |
-|  10 | 1,268 |
-|  15 | 12,146 |
-|  20 | 115,958 |
-|  25 | 1,106,678 |
-|  30 | 10,561,490 |
-|  35 | 100,792,306 |
-|  40 | 961,898,840 |
+| n | f(n) | Factor
+| ---- | ---- | ---- |
+|  -5 | 3 |     1.0 |
+|   0 | 2 |   0.667 |
+|   5 | 126 |    63.0 |
+|  10 | 1,268 |    10.1 |
+|  15 | 12,146 |    9.58 |
+|  20 | 115,958 |    9.55 |
+|  25 | 1,106,678 |    9.54 |
+|  30 | 10,561,490 |    9.54 |
+|  35 | 100,792,306 |    9.54 |
+|  40 | 961,898,840 |    9.54 |
 
-Se ve que para `n` igual a 40 se tiene casi mil millones de operaciones. Y en la medida que se *suma* 5 a `n` las operaciones se *multiplican* por 10.
+Se ve que para `n` igual a 40 se tiene casi mil millones de operaciones. Y para `n` grandes, en la medida que se *suma* 5 a `n` las operaciones se *multiplican* por 9,54.
