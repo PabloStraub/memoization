@@ -52,4 +52,4 @@ El programa f_345.py computa esta función `f`, obviamente usando `@memoized` po
 |  50 | 87,605,909,802 |    9.54 |
 |  55 | 836,056,070,762 |    9.54 |
 
-Se ve que para `n` igual a 40 se tiene casi mil millones de operaciones. Y para `n` grandes, en la medida que se *suma* 5 a `n` la cantidad de operaciones se *multiplica* por 9,54.
+Se ve que para `n` igual a 40 se tiene casi mil millones de operaciones. Con `n` igual a 55 se acerca al billón de operaciones (*trillion*, en inglés). Y en general, para `n` grandes, en la medida que se *suma* 5 a `n` la cantidad de operaciones se *multiplica* por 9,54.
