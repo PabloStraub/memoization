@@ -17,15 +17,15 @@ Explicación del contenido
 | memoized.py | Definición de la decoración `@memoized` que es genérica porque cualquier lista de parámetros posicionales de tipos inmutables |
 | countStepsMemoized.py | Versión con decoración `@memoized` de countSteps.py, y por ende muchísimo más eficiente, pero simple. Acá se usa una tupla para especificar `steps` porque es inmutable. |
 
-# Análisis de tiempo de ejecución de count_staps_135
+## Análisis de tiempo de ejecución de count_steps_135
 
-Considera la versión count_staps_135 del módulo countSteps.py.
+Considera la versión count_steps_135 del módulo countSteps.py.
 
 Supongamos que cada operación simple toma la misma cantidad de tiempo. Entonces lo que debemos hacer es contar la cantidad de operaciones simples. 
 
-Para n igual a cero se necesitan dos unidades de tiempo (if y return). Para n menor que cero se necesitan 3 unidades de tiempo (un if falso, un if verdadero y return).
+Para `n` igual a cero se necesitan dos unidades de tiempo (if y return). Para `n` menor que cero se necesitan 3 unidades de tiempo (un if falso, un if verdadero y return).
 
-Para n mayor que 0 es un poco más complejo. Se necesitan dos if falsos, tres llamados a función, tres restas, dos sumas y el costo de las funciones con n-1, n-3 y n-5.
+Para `n` mayor que 0 es un poco más complejo. Se necesitan dos if falsos, tres llamados a función, tres restas, dos sumas y el costo de las funciones con `n`-1, `n`-3 y `n`-5.
 
 En resumen, la cantidad de operaciones está dada por la siguiente función:
 ```
