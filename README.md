@@ -67,7 +67,7 @@ Para valores de `n` grandes esta función se puede aproximar por:
 f(n) \approx 9.61 \cdot (1.570322)^n - 5.5.
 \]
 ```
-Esto muestra claramente la naturaleza exponencial del algoritmo, lo que hace imposible usarlo con valores de `n` grandes.
+Esto muestra claramente la naturaleza exponencial del algoritmo, lo que hace imposible usarlo con valores de `n` grandes. Además, notar de 1.57 elevado a 5 es 9.54, consistente con los resultados de arriba.
 
 # Análisis de countStepsMemoization
 
