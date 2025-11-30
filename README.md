@@ -103,7 +103,7 @@ En resumen, la cantidad de operaciones está dada por la siguiente función:
 ```
 m(0) = 2
 m(n) = 3, si n < 0
-m(n) = 8 + f(n-1) + 9 * ls, si n > 0
+m(n) = 8 + m(n-1) + 9 * ls, si n > 0
 ```
 
 Donde ls es `len(steps) - 1`, en nuestro caso ls = 2.
