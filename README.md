@@ -112,6 +112,6 @@ Simplificando e ignorando el caso de los número negativos, tenemos:
 
 ```
 m(0) = 2
-m(n) = 26 + f(n-1), si n > 0
+m(n) = 26 + m(n-1), si n > 0
 ```
 Es fácil demostrar que `m(n) = 2 + 26 n`. Esto explica por qué el cómputo es tan rápido aún con n relativamente grande.
