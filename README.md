@@ -25,32 +25,38 @@ Supongamos que cada operación simple toma la misma cantidad de tiempo. Entonces
 
 Para `n` igual a cero se necesitan dos unidades de tiempo (if y return). Para `n` menor que cero se necesitan 3 operaciones (un if falso, un if verdadero y return).
 
-Para `n` mayor que 0 es un poco más complejo. Se necesitan dos if falsos, tres llamados a función, tres restas, dos sumas y el costo de las funciones con `n`-1, `n`-3 y `n`-5.
+Para `n` mayor que 0 es un poco más complejo. Se necesitan dos if falsos, tres llamados a función, tres restas, dos sumas, un return y el costo de las funciones con `n`-1, `n`-3 y `n`-5.
 
 En resumen, la cantidad de operaciones está dada por la siguiente función:
 ```
 f(0) = 2
 f(n) = 3, si n < 0
-f(n) = 10 + f(n-1) + f(n-3) + f(n-5), si n > 0
+f(n) = 11 + f(n-1) + f(n-3) + f(n-5), si n > 0
 ```
 
 El programa f_345.py computa esta función `f`, obviamente usando `@memoized` porque en caso contrario demoraría mucho.
 
-| n | f(n) | Factor
+| n | f(n) | Factor |
 | ---- | ---- | ---- |
 |  -5 | 3 |     1.0 |
 |   0 | 2 |   0.667 |
-|   5 | 126 |    63.0 |
-|  10 | 1,268 |    10.1 |
-|  15 | 12,146 |    9.58 |
-|  20 | 115,958 |    9.55 |
-|  25 | 1,106,678 |    9.54 |
-|  30 | 10,561,490 |    9.54 |
-|  35 | 100,792,306 |    9.54 |
-|  40 | 961,898,840 |    9.54 |
-|  45 | 9,179,761,618 |    9.54 |
-|  50 | 87,605,909,802 |    9.54 |
-|  55 | 836,056,070,762 |    9.54 |
+|   5 | 134 |    67.0 |
+|  10 | 1,350 |    10.1 |
+|  15 | 12,933 |    9.58 |
+|  20 | 123,473 |    9.55 |
+|  25 | 1,178,401 |    9.54 |
+|  30 | 11,245,974 |    9.54 |
+|  35 | 107,324,598 |    9.54 |
+|  40 | 1,024,238,958 |    9.54 |
+|  45 | 9,774,696,761 |    9.54 |
+|  50 | 93,283,599,121 |    9.54 |
+|  55 | 890,240,390,449 |    9.54 |
+|  60 | 8,495,898,102,314 |    9.54 |
+|  65 | 81,079,543,614,214 |    9.54 |
+|  70 | 773,772,509,217,750 |    9.54 |
+|  75 | 7,384,401,407,954,381 |    9.54 |
+|  80 | 70,472,113,578,867,185 |    9.54 |
+|  85 | 672,541,824,029,649,825 |    9.54 |
 
 Se ve que para `n` igual a 40 se tiene casi mil millones de operaciones. Con `n` igual a 55 se acerca al billón de operaciones (*trillion*, en inglés). Y en general, para `n` grandes, en la medida que se *suma* 5 a `n` la cantidad de operaciones se *multiplica* por 9,54.
 
@@ -82,13 +88,13 @@ Para `n` igual a cero se necesitan dos unidades de tiempo (if y return). Para `n
 
 Para `n` mayor que 0, donde el dato está precomputado en `memo`, se necesitan 6 operaciones: 2 if falsos, 1 acceso a `memo`, 1 if verdadero, 1 acceso a `memo[n]`, 1 return.
 
-Para `n` mayor que 0, pero donde el dato está no precomputado en `memo`, se necesita primero llegar al inicio de la iteración, con 4 operaciones: 2 if falsos, 1 acceso a `memo`, 1 if falso, 1 inicializar `result`. Luego en la primera iteración (donde suponemos que `steps[0]` es 1) hay 1 acceso a `steps`, 1 resta, 1 llamado a `count_steps`, 1 suma a `result`. Es decir tenemos 4 operaciones adicionales, más todas las operaciones que se necesiten para computar `count_steps(n - step, steps, memo)`. Pero ahora nos falta sumar las operaciones de todos las otras iteraciones; es decir, faltan `len(steps) - 1` iteraciones. Cada iteración tendrá: 
+Para `n` mayor que 0, pero donde el dato está no precomputado en `memo`, se necesita primero llegar al inicio de la iteración, con 5 operaciones: 2 if falsos, 1 acceso a `memo`, 1 if falso, 1 inicializar `result`. Luego en la primera iteración (donde suponemos que `steps[0]` es 1) hay 1 acceso a `steps`, 1 resta, 1 llamado a `count_steps`, 1 suma a `result`. Es decir tenemos 4 operaciones adicionales, más todas las operaciones que se necesiten para computar `count_steps(n - step, steps, memo)`. Pero ahora nos falta sumar las operaciones de todos las otras iteraciones; es decir, faltan `len(steps) - 1` iteraciones. Cada iteración tendrá: un acceso a steps, una suma, un llamado a count_steps que usa `memo` (recordemos que eso son 6 operaciones), en total son 9 operaciones.
 
 En resumen, la cantidad de operaciones está dada por la siguiente función:
 ```
 m(0) = 2
 m(n) = 3, si n < 0
-m(n) = 8 + f(n-1) + 6 * ls, si n > 0
+m(n) = 8 + f(n-1) + 9 * ls, si n > 0
 ```
 
 Donde ls es `len(steps) - 1`, en nuestro caso ls = 2.
@@ -97,6 +103,6 @@ Simplificando e ignorando el caso de los número negativos, tenemos:
 
 ```
 m(0) = 2
-m(n) = 20 + f(n-1), si n > 0
+m(n) = 26 + f(n-1), si n > 0
 ```
-Es fácil demostrar que `m(n) = 2 + 20 n`. Esto explica por qué el cómputo es tan rápido aún con n relativamente grande.
+Es fácil demostrar que `m(n) = 2 + 26 n`. Esto explica por qué el cómputo es tan rápido aún con n relativamente grande.
