@@ -60,6 +60,15 @@ El programa f_345.py computa esta función `f`, obviamente usando `@memoized` po
 
 Se ve que para `n` igual a 40 se tiene casi mil millones de operaciones. Con `n` igual a 55 se acerca al billón de operaciones (*trillion*, en inglés). Y en general, para `n` grandes, en la medida que se *suma* 5 a `n` la cantidad de operaciones se *multiplica* por 9,54.
 
+Para valores de `n` grandes esta función se puede aproximar por:
+
+```LaTeX
+\[
+f(n) \approx 9.61 \cdot (1.570322)^n - 5.5.
+\]
+```
+Esto muestra claramente la naturaleza exponencial del algoritmo, lo que hace imposible usarlo con valores de `n` grandes.
+
 # Análisis de countStepsMemoization
 
 Analicemos ahora countStepsMemoization. Para simplificar, vamos a restringir el análisis a la situación donde el primer elemento de `steps` es 1.
